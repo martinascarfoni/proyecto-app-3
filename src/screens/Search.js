@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
 
-export default class home extends Component {
+export default class Search extends Component {
   render() {
     return (
       <View>
