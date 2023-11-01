@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
 import { auth, db } from "../firebase/config"
+import Login from "../screens/Login"
 
 
 export default class FormRegister extends Component {

@@ -12,19 +12,20 @@ const stack = createNativeStackNavigator()
 
 
 export default function MainNavigation() {
-    return (
-      <NavigationContainer>
-        <stack.Navigator>
-            <stack.Screen 
-            name="Register" 
-            component={Register} 
-            options={{ headerShown: false }} />
-        
-        {/* <stack.Screen 
-            name="Login" 
-            component={Login} 
-            options={{ headerShown: false }} /> */}
-{/* 
+  return (
+    <NavigationContainer>
+      <stack.Navigator>
+        <stack.Screen
+          name="Login"
+          component={Login}
+          options={{ headerShown: false }} />
+        <stack.Screen
+          name="Register"
+          component={Register}
+          options={{ headerShown: false }} />
+
+
+        {/* 
         <stack.Screen 
             name="TabNavigation" 
             component={TabNavigation} 
@@ -36,10 +37,10 @@ export default function MainNavigation() {
             options={{ headerShown: false }} />
 
          */}
-       
 
-        </stack.Navigator>
-      </NavigationContainer>
-    )
-  }
+
+      </stack.Navigator>
+    </NavigationContainer>
+  )
+}
 
