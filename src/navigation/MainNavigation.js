@@ -25,12 +25,12 @@ export default function MainNavigation() {
           options={{ headerShown: false }} />
 
 
-        {/* 
         <stack.Screen 
             name="TabNavigation" 
             component={TabNavigation} 
             options={{ headerShown: false }} />
 
+            {/* 
         <stack.Screen 
             name="Comments" 
             component={Comments} 

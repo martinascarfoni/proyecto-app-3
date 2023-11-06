@@ -78,7 +78,7 @@ export default class FormLogin extends Component {
                 {this.state.mail== "" || this.state.userName== "" || this.state.password== "" ? "": 
                 <TouchableOpacity
                     style={styles.btn}
-                    onPress={() => {this.loguearUsuario(this.state.mail, this.state.password), this.props.navigation.navigate('TabNavigation')}}>
+                    onPress={() => {this.loguearUsuario(this.state.mail, this.state.password)}}>
                     <Text>Iniciar sesión</Text>
                 </TouchableOpacity>}
                 </View>
