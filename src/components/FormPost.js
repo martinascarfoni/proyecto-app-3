@@ -15,13 +15,16 @@ export default class FormPost extends Component {
     return (
       <View>
             <TextInput
-                placeholder='Agrega tu comentario'
+                placeholder='Agrega tu descripcion del posteo'
                 keyboardType='default'
                 onChangeText={(text)=> this.setState({comentario:text})}
                 value={this.state.comentario}
                 multiline={true}
                 style={StyleSheet.input}
             />
+
+            {/* agregar el Text input de descripcion con el value de descripcion */}
+
             <TouchableOpacity onPress={(obj)=> this.props.onSubmit({
                     description: this.state.comentario
                 })}
