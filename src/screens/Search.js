@@ -5,7 +5,7 @@ export default class Search extends Component {
   render() {
     return (
       <View>
-        <Text> textInComponent </Text>
+        <Text> Buscador </Text>
       </View>
     )
   }

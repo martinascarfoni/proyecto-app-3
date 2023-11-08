@@ -55,7 +55,7 @@ export default class FormRegister extends Component {
                 .then(user => db.collection("users").add({
                     owner: this.state.mail,
                     createdAt: Date.now(),
-                    userNameame: this.state.userName,
+                    userName: this.state.userName,
                     minibio: this.state.minibio,
                     fotoPerfil: this.state.fotoPerfil
                 }))

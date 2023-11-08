@@ -5,7 +5,7 @@ import { db, auth } from "../firebase/config"
 import { TouchableOpacity } from 'react-native-web'
 
 export default class NewPost extends Component {
-  contructor(props) {
+  constructor(props) {
     super(props)
     this.state = {
       descripcion: '',
@@ -40,37 +40,28 @@ export default class NewPost extends Component {
     })
   }
 
-  render() {
-    return (
-      <View>
-        <Text>Posteo nuevo</Text>
-        <View />
-        {
-          this.state.paso1 ?
-            <View>
-              <CamaraPost
-                actualizarFotourl={(url) => this.actualizarFotourl(url)}
-              />
-            </View>
 
-            :
-            <>
-              <FormPost
-                // onSubmit={(obj)=> this.onSubmit(obj)} 
-                actualizarDescripcion={(descripcion) => this.actualizarDescripcion(descripcion)}
-                estadoDescripcion={this.state.descripcion}
-              />
-              <TouchableOpacity
-                onPress={() => this.onSubmit({
-                  descripcion: this.state.descripcion
-                })}
-              >
-                <Text>
-                  Enviar
-                </Text>
-              </TouchableOpacity>
-              </View>
-        </View>
-        )
-    }
-  }
+render() {
+return (
+  <View>
+        <Text>Posteo nuevo</Text>
+        {this.state.paso1 ? (
+          <View>
+            <CamaraPost actualizarFotourl={(url) => this.actualizarFotourl(url)} />
+          </View>
+        ) : (
+          <View>
+            <FormPost
+              actualizarDescripcion={(descripcion) => this.actualizarDescripcion(descripcion)}
+              estadoDescripcion={this.state.descripcion}
+            />
+            <TouchableOpacity onPress={() => this.onSubmit({ descripcion: this.state.descripcion })}>
+              <Text>Enviar</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+      </View>
+)
+  
+
+}}
