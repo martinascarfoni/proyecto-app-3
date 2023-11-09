@@ -6,35 +6,25 @@ export default class FormPost extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            comentario: "",
-            //imágen: "",
+            descripcionPost: "",
+           
         }
     }
   render() {
-    console.log(this.props);
     return (
-      <View>
-            <TextInput
-                placeholder='Agrega tu descripcion del posteo'
-                keyboardType='default'
-                onChangeText={(text)=> this.setState({comentario:text})}
-                value={this.state.comentario}
-                multiline={true}
-                style={StyleSheet.input}
-            />
+        <View>
+        <TextInput
+            style = {styles.input}
+            placeholder = 'Coment for the post'
+            keyboardType = 'default'
+            value = {this.props.estadoDescripcion}
+            onChangeText = { (text) => this.props.actualizarDescripcion(text) }
+            multiline={true}
+            numberOfLines={8}
+        />
 
-            {/* agregar el Text input de descripcion con el value de descripcion */}
-
-            <TouchableOpacity onPress={(obj)=> this.props.onSubmit({
-                    description: this.state.comentario
-                })}
-                style={styles.btn} >
-                <Text style={styles.textbtn}>Agregar posteo</Text>
-                
-            </TouchableOpacity>
-        </View>
-       
-     
+    </View>
+      
     )
   }
 }

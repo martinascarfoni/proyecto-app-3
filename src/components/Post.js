@@ -34,7 +34,7 @@ export default class Post extends Component {
     return (
       <View>
             <Text>Soy el posteo de: {this.props.data.data.owner}</Text>
-            <Text>Mi comentario es: {this.props.data.data.desccription}</Text>
+            <Text>Mi comentario es: {this.props.data.data.descripcion}</Text>
         </View>
     )
   }

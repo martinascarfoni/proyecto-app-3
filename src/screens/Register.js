@@ -12,7 +12,7 @@ export default class Register extends Component {
     componentDidMount(){
         auth.onAuthStateChanged((user)=>{
             if (user !== null){
-                this.props.navigation.navigate("TabNavigation")
+                this.props.navigation.navigate('TabNavigation')
             }
         })
     }

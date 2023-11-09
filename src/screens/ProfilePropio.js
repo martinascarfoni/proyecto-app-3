@@ -14,39 +14,43 @@ export default class ProfilePropio extends Component {
   }
 
   componentDidMount(){
+
+    // busco datos del owner
     db.collection('users').where("owner", "==", auth.currentUser.email).onSnapshot((docs)=>{
-      // console.log(docs)
-      let arrDocs = []
+      let arrUsuario = []
       docs.forEach((doc) => {
-        arrDocs.push({
+        arrUsuario.push({
           id:doc.id,
           data: doc.data()
         })
       })
 
       this.setState({
-        usuario : arrDocs
-      }, () => console.log(this.state.usuario))
+        usuario : arrUsuario[0].data 
+      }, () => console.log(this.state.usuario.userName))
 
     })
 
+    // busco datos de los posteos del current user
     db.collection('posts').where("owner", "==", auth.currentUser.email).onSnapshot((docs)=>{
       // console.log(docs)
-      let arrDocs = []
+      let arrPosts = []
       docs.forEach((doc) => {
-        arrDocs.push({
+        arrPosts.push({
           id:doc.id,
           data: doc.data()
         })
       })
-      arrDocs.sort((a,b)=> b.data.createdAt - a.datacreatedAt)
+      
       this.setState({
-        posteos : arrDocs
+        posteos : arrPosts
       }, () => console.log(this.state.posteos))
 
     })
     
   }
+
+  
 
 
   logOut(){
@@ -61,18 +65,31 @@ export default class ProfilePropio extends Component {
   }
 
 
+  
+
   render() {
     return (
       <View>
+  
         <Text> Foto perfil </Text>
-        
+        <Text> @{this.state.usuario.userName} </Text>
+        <Text> {this.state.usuario.owner} </Text>
 
-       
-       
-
-        <TouchableOpacity onPress={()=> this.logOut}>
+        {this.state.usuario.minibio !== "" ? <Text> {this.state.usuario.minibio} </Text> : "" }
+      
+        <TouchableOpacity onPress={()=> this.logOut()}>
           <Text> Logout</Text>
         </TouchableOpacity>
+
+
+        <FlatList
+        data={this.state.posteos}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem= {({item})=> <Post data={item}/>}
+          
+
+        
+        />
 
       </View>
     )
