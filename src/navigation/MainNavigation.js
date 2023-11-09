@@ -30,7 +30,7 @@ export default function MainNavigation() {
             options={{ headerShown: false }} />
         
         <stack.Screen 
-        name = 'coments'
+        name = 'comments'
         component={Comments}
         options={{
             headerShown:false

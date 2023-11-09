@@ -1,6 +1,7 @@
 import { Text, View, TouchableOpacity, StyleSheet, TextInput } from 'react-native'
 import React, { Component } from 'react'
 import { auth, db } from "../firebase/config"
+import firebase from 'firebase'
 
 export default class Comments extends Component {
   constructor(props) {
@@ -10,21 +11,21 @@ export default class Comments extends Component {
     }
   }
 
-  agregarComentario(comentario) {
-    console.log(comentario)
-  }
-
-  onSubmit({
-    descripcion
-  }) {
-    db.collection('comments').doc(this.props.postId).add({
-      owner: auth.currentUser.email,
-      descripcion: descripcion,
-      createdAt: Date.now(),
+  agregarComentario(comentario){
+    console.log(this.props.post);
+    db
+    .collection('posts')
+    .doc(this.props.post)
+    .update({
+        comentarios: firebase.firestore.FieldValue.arrayUnion({
+            // owner: auth.currentUser.email,
+            // createdAt: Date.now(),
+            comentario: comentario
+        })
     })
-      .then(() => this.props.navigation.navigate("TabNavigation"))
-      .catch((e) => console.log(e))
-  }
+    .then(()=> this.props.navigation.navigate('Home'))
+    .catch((e) => console.log(e))
+}
 
 
   render() {
@@ -38,9 +39,7 @@ export default class Comments extends Component {
           value={this.state.name}
           onChangeText={(text) => this.setState({ comentario: text })}
         />
-        <TouchableOpacity onPress={() => this.onSubmit({
-          descripcion: this.state.comentario,
-        })}
+        <TouchableOpacity onPress={() => this.agregarComentario(this.props.comentario)}
         >
           <Text>Agregar comentario</Text>
         </TouchableOpacity>

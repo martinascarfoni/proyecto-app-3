@@ -26,13 +26,14 @@ export default class Comments extends Component {
     render() {
         return (
             <View>
+                {console.log(this.props)}
                 {/* <FlatList
                     data={this.state.posteos}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => <Post navigation={this.props.navigation} data={item.data} id={item.id} />}
                 /> */}
 
-                <FormComments navigation={this.props.navigation} />
+                <FormComments navigation={this.props.navigation} post={this.props.route.params.post} />
             </View>
         )
     }

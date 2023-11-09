@@ -7,7 +7,7 @@ export default class Post extends Component {
     constructor(props){
         super(props)
         this.state = {
-          likes:0,
+          likes: 0,
           estaLikeado: false
 
         }
@@ -30,8 +30,11 @@ export default class Post extends Component {
     }
 
     irComentar(){
-      this.props.navigation.navigate('coments')
+      this.props.navigation.navigate('comments', {post: this.props.id})
   }
+componentDidMount(){
+  console.log(this.props);
+}
 
   render() {
     return (
