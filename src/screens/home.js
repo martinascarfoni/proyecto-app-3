@@ -32,7 +32,7 @@ export default class Home extends Component {
         <FlatList 
         data= {this.state.posteos}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({item}) => <Post data={item}/>}
+        renderItem={({item}) => <Post data={item.data}/>}
         /> 
       </View>
     )

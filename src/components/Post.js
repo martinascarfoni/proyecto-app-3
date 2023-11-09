@@ -1,4 +1,4 @@
-import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
+import { Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import React, { Component } from 'react'
 import {db, auth} from '../firebase/config'
 import firebase from 'firebase';
@@ -12,7 +12,6 @@ export default class Post extends Component {
 
         }
     }
-    
 
     like(){
       db.collection('posts').doc(this.props.id).update({likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)})
@@ -33,9 +32,20 @@ export default class Post extends Component {
   render() {
     return (
       <View>
-            <Text>Soy el posteo de: {this.props.data.data.owner}</Text>
-            <Text>Mi comentario es: {this.props.data.data.descripcion}</Text>
+        <Image
+        source = {{uri: this.props.data.fotoUrl} ? {uri: this.props.data.fotoUrl}: "" }
+        style = {styles.img}
+        resizeMode='contain'
+        />
+            <Text>Soy el posteo de: {this.props.data.owner}</Text>
+            <Text>Mi comentario es: {this.props.data.descripcion}</Text>
         </View>
     )
   }
 }
+
+const styles= StyleSheet.create({
+  img: {
+    height: 200
+  }
+})

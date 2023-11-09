@@ -26,8 +26,8 @@ export default class ProfilePropio extends Component {
       })
 
       this.setState({
-        usuario : arrUsuario[0].data 
-      }, () => console.log(this.state.usuario.userName))
+        usuario : arrUsuario[0].data
+      }, () => console.log(this.state.usuario))
 
     })
 

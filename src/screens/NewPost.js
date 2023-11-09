@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, StyleSheet } from 'react-native'
 import FormPost from '../components/FormPost'
 import { db, auth } from "../firebase/config"
 import { TouchableOpacity } from 'react-native-web'
@@ -16,16 +16,18 @@ export default class NewPost extends Component {
   }
 
   onSubmit({
+    fotoUrl,
     descripcion
   }) {
     db.collection('posts').add({
       owner: auth.currentUser.email,
       descripcion: descripcion,
       createdAt: Date.now(),
+      fotoUrl: fotoUrl,
       likes: []
     })
     .then(()=> this.props.navigation.navigate("Home"))
-      .catch((e) => console.log(e))
+    .catch((e) => console.log(e))
   }
 
   actualizarDescripcion(text) {
@@ -47,7 +49,7 @@ export default class NewPost extends Component {
 
 render() {
 return (
-  <View>
+  <View style={styles.container}>
         <Text>Posteo nuevo</Text>
 
         {
@@ -63,7 +65,11 @@ return (
               actualizarDescripcion={(descripcion) => this.actualizarDescripcion(descripcion)}
               estadoDescripcion={this.state.descripcion}/>
 
-            <TouchableOpacity onPress={() => this.onSubmit({ descripcion: this.state.descripcion })}>
+            <TouchableOpacity onPress={() => this.onSubmit({ 
+              descripcion: this.state.descripcion,
+              fotoUrl: this.state.urlFoto 
+              })}
+              >
               <Text>Enviar</Text>
             </TouchableOpacity>
           </View>
@@ -78,3 +84,10 @@ return (
   
 
 }}
+
+
+const styles= StyleSheet.create({
+  container: {
+    flex: 1
+  }
+})
