@@ -10,7 +10,6 @@ import TabNavigation from "./TabNavigation"
 
 const stack = createNativeStackNavigator()
 
-
 export default function MainNavigation() {
   return (
     <NavigationContainer>
@@ -19,25 +18,24 @@ export default function MainNavigation() {
           name="Login"
           component={Login}
           options={{ headerShown: false }} />
+
         <stack.Screen
           name="Register"
           component={Register}
           options={{ headerShown: false }} />
 
-
         <stack.Screen 
             name="TabNavigation" 
             component={TabNavigation} 
             options={{ headerShown: false }} />
-
-            {/* 
+        
         <stack.Screen 
-            name="Comments" 
-            component={Comments} 
-            options={{ headerShown: false }} />
-
-         */}
-
+        name = 'coments'
+        component={Comments}
+        options={{
+            headerShown:false
+        }}
+        />
 
       </stack.Navigator>
     </NavigationContainer>

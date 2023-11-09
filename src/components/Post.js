@@ -29,6 +29,10 @@ export default class Post extends Component {
       .catch((err) => console.log(err))
     }
 
+    irComentar(){
+      this.props.navigation.navigate('coments')
+  }
+
   render() {
     return (
       <View>
@@ -39,6 +43,12 @@ export default class Post extends Component {
         />
             <Text>Soy el posteo de: {this.props.data.owner}</Text>
             <Text>Mi comentario es: {this.props.data.descripcion}</Text>
+            <Text>Likes</Text>
+
+            <TouchableOpacity onPress={()=> this.irComentar()}>
+            <Text>Ver Comentarios</Text>
+        </TouchableOpacity>
+
         </View>
     )
   }
