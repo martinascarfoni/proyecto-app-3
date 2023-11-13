@@ -4,6 +4,7 @@ import { auth, db } from "../firebase/config"
 import Login from "../screens/Login"
 
 
+
 export default class FormRegister extends Component {
     constructor(props) {
         super(props)
@@ -59,7 +60,7 @@ export default class FormRegister extends Component {
                     minibio: this.state.minibio,
                     fotoPerfil: this.state.fotoPerfil
                 }))
-                .then((resp) => console.log(resp))
+                .then((resp) => this.props.navigation.navigate('InfoAdicionalUser'))
                 .catch((e) => {
                     console.log(e), this.setState({
                         errorMailFirebase: e.message

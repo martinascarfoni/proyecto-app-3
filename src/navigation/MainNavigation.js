@@ -8,6 +8,7 @@ import Login from "../screens/Login"
 import Comments from "../screens/Comments"
 import TabNavigation from "./TabNavigation"
 import ProfileUsuarios from "../screens/ProfileUsuarios"
+import InfoAdicionalUser from '../screens/InfoAdicionalUser'
 
 const stack = createNativeStackNavigator()
 
@@ -40,6 +41,13 @@ export default function MainNavigation() {
         component={ProfileUsuarios}
         />
 
+      <stack.Screen 
+        name = 'InfoAdicionalUser'
+        component={InfoAdicionalUser}
+        options={{
+          headerShown: false
+        }}
+        />
 
 
       </stack.Navigator>
