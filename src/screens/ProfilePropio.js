@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet, FlatList, Image } from 'react-native'
 import { auth, db } from "../firebase/config"
 import Post from "../components/Post"
+import { getAuth, deleteUser } from "firebase/auth";
+
 
 
 export default class ProfilePropio extends Component {
@@ -9,9 +11,12 @@ export default class ProfilePropio extends Component {
     super(props)
     this.state= {
       usuario:[],
-      posteos: []
+      posteos: [],
+      id: ""
     }
   }
+
+
 
   componentDidMount(){
 
@@ -26,8 +31,9 @@ export default class ProfilePropio extends Component {
       })
 
       this.setState({
-        usuario : arrUsuario[0].data
-      }, () => console.log(this.state.usuario))
+        usuario : arrUsuario[0].data,
+        id:  arrUsuario[0].id
+      }, () => console.log(this.state.usuario, this.state.id))
 
     })
 
@@ -60,6 +66,50 @@ export default class ProfilePropio extends Component {
     
   }
 
+  eliminarUsuario(userId){
+    const user = auth.currentUser;
+    const userEmail = user.email;
+    db.collection('users')
+      .where('owner', '==', userEmail)
+      .get()
+      .then((docs) => {
+        docs.forEach((doc) => {
+          doc.ref
+            .delete()
+            .then(() => {
+              console.log('Datos del usuario eliminados correctamente');
+            })
+            .catch((error) => {
+              console.error('Error al eliminar datos del usuario:', error);
+            });
+        });
+      })
+      .catch((error) => {
+        console.error('Error al buscar datos del usuario:', error);
+      });
+
+    user.delete()
+      .then(() => {
+        console.log('Usuario eliminado correctamente');
+        this.props.navigation.navigate('Login');
+      })
+      .catch((error) => {
+        console.error('Error al eliminar usuario:', error);
+      });
+
+
+    // auth.signOut()
+    // db.collection("users").doc(userId).delete()
+    // this.props.navigation.navigate("Login")
+    
+
+  //   deleteUser(user)
+  //   .then(()=> this.props.navigation.navigate("Login"))
+  //   .catch(err => console.log(err))
+  // 
+  }
+
+
   render() {
     return (
       <View style={styles.container}>
@@ -77,6 +127,11 @@ export default class ProfilePropio extends Component {
       
         <TouchableOpacity onPress={()=> this.logOut()}>
           <Text> Logout</Text>
+        </TouchableOpacity>
+
+        
+        <TouchableOpacity onPress={()=> this.eliminarUsuario()}>
+          <Text> Eliminar mi usuario</Text>
         </TouchableOpacity>
 
         <Text>
