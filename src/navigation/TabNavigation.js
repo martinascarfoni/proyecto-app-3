@@ -32,7 +32,6 @@ export default function TabNavigation() {
         name='Search' 
         component={Search}
         options={{
-            headerShown:false,
             tabBarIcon: ()=> <FontAwesome5 name='home' size={24} color='green' />
         }}
         />

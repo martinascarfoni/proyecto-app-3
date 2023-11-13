@@ -9,12 +9,13 @@ export default class Search extends Component {
     this.state = {
       searchData: [],
       valorInput: [],
-      busqueda: true
+      busqueda: true,
+      backup: []
     }
   }
 
-  filtrarUsuarios(input){
-    db.collection('users').where("userName", "==", input).onSnapshot((docs)=>{
+  componentDidMount(){
+    db.collection('users').onSnapshot((docs)=>{
       let arrUsuarios = []
       docs.forEach(doc => {
         arrUsuarios.push({
@@ -23,9 +24,22 @@ export default class Search extends Component {
         })
       })
       this.setState({
-        searchData: arrUsuarios,
-        busqueda: false
+        backup: arrUsuarios
       }, () => console.log(this.state.searchData))
+    })
+  }
+  
+  filtrarUsuarios(input){
+    let usersF = this.state.backup.filter((elm) => elm.data.userName.toLowerCase().includes(input.toLowerCase()))
+    this.setState({
+      searchData: usersF, 
+      busqueda: false
+    })
+  }
+
+  volver(){
+    this.setState({
+      valorInput: ""
     })
   }
   
@@ -34,6 +48,7 @@ export default class Search extends Component {
         this.state.busqueda ? 
         <>
         <Text>FormSearch</Text>
+        
         <TextInput
             style = {styles.input}
             placeholder = 'Busca el usuario'
@@ -47,11 +62,20 @@ export default class Search extends Component {
         </>
         :
         <>
+        <TouchableOpacity onPress={()=> this.volver()}>
+          <Text> Volver </Text>
+        </TouchableOpacity>
+
+        {this.state.searchData.length !== 0 ?
         <FlatList 
         data= {this.state.searchData}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({item}) => <Usuario data={item.data} id={item.id} />}
-        />  
+        renderItem={({item}) => <Usuario data={item.data} id={item.id} navigation = {this.props.navigation} />}
+        />  :
+        <Text> El usuario no existe</Text> }
+   
+
+        
         </>
     )
   }
