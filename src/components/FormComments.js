@@ -18,8 +18,8 @@ export default class Comments extends Component {
     .doc(this.props.post)
     .update({
         comentarios: firebase.firestore.FieldValue.arrayUnion({
-            // owner: auth.currentUser.email,
-            // createdAt: Date.now(),
+            owner: auth.currentUser.email,
+            createdAt: Date.now(),
             comentario: comentario
         })
     })
@@ -39,7 +39,7 @@ export default class Comments extends Component {
           value={this.state.name}
           onChangeText={(text) => this.setState({ comentario: text })}
         />
-        <TouchableOpacity onPress={() => this.agregarComentario(this.props.comentario)}
+        <TouchableOpacity onPress={() => this.agregarComentario(this.state.comentario)}
         >
           <Text>Agregar comentario</Text>
         </TouchableOpacity>
