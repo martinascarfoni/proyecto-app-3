@@ -2,6 +2,7 @@ import { Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import React, { Component } from 'react'
 import {db, auth} from '../firebase/config'
 import firebase from 'firebase';
+import { FontAwesome } from '@expo/vector-icons';
 
 export default class Post extends Component {
     constructor(props){
@@ -11,6 +12,13 @@ export default class Post extends Component {
           estaLikeado: false
 
         }
+    }
+
+    componentDidMount(){
+      let validacionLike = this.props.data.likes.includes(auth.currentUser.email)
+      this.setState({
+        estaLikeado: validacionLike
+      })
     }
 
     like(){
@@ -30,27 +38,63 @@ export default class Post extends Component {
     }
 
     irComentar(){
-      this.props.navigation.navigate('comments', {post: this.props.id})
+      this.props.navigation.navigate('comments', {id: this.props.id})
   }
-componentDidMount(){
-  console.log(this.props);
-}
+
 
   render() {
     return (
       <View>
+        <Text> {this.props.data.owner}</Text>
         <Image
         source = {{uri: this.props.data.fotoUrl} ? {uri: this.props.data.fotoUrl}: "" }
         style = {styles.img}
         resizeMode='contain'
         />
-            <Text>Soy el posteo de: {this.props.data.owner}</Text>
+        <Text>{this.props.data.descripcion}</Text>
+                <View>
+                    <Text>
+                        {this.props.data.likes.length}
+                    </Text>
+                    {
+                        this.state.estaLikeado ?
+                            <TouchableOpacity
+                                onPress={() => this.unlike()}
+                            >
+                                <FontAwesome
+                                    name='heart'
+                                    color='red'
+                                    size={24}
+                                />
+                            </TouchableOpacity>
+                            :
+                            <TouchableOpacity
+                                onPress={() => this.like()}
+                            >
+                                <FontAwesome
+                                    name='heart-o'
+                                    color='red'
+                                    size={24}
+                                />
+                            </TouchableOpacity>
+                    }
+                </View>
+                <View>
+                    <TouchableOpacity
+                        onPress={() => this.irComentar()}
+                    >
+                    
+                        <Text> Comentarios: {this.props.data.comentarios.length}</Text>
+                  </TouchableOpacity>
+                </View>
+
+            {/*
             <Text>Mi comentario es: {this.props.data.descripcion}</Text>
             <Text>Likes</Text>
 
             <TouchableOpacity onPress={()=> this.irComentar()}>
             <Text>Ver Comentarios</Text>
-        </TouchableOpacity>
+    </TouchableOpacity>*/}
 
         </View>
     )

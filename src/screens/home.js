@@ -28,7 +28,9 @@ export default class Home extends Component {
   }
   render() {
     return (
-      <View>
+      <View 
+        style={styles.container}
+      >
         <FlatList 
         data= {this.state.posteos}
         keyExtractor={(item) => item.id.toString()}
@@ -38,3 +40,10 @@ export default class Home extends Component {
     )
   }
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex:1,
+  }
+})
