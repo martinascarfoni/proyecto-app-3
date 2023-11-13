@@ -39,7 +39,7 @@ export default class Post extends Component {
     }
 
     irComentar(){
-      this.props.navigation.navigate('comments', {id: this.props.id})
+      this.props.navigation.navigate('Comments', {id: this.props.id})
   }
 
   irAlPerfil(){
