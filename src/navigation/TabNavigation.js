@@ -37,13 +37,15 @@ export default function TabNavigation() {
         }}
         />
         <Tab.Screen 
-        name='Profile Propio' 
+        name='ProfilePropio' 
         component={ProfilePropio}
         options={{
             headerShown:false,
             tabBarIcon: ()=> <FontAwesome5 name='home' size={24} color='green' />
         }}
         />
+
+        
     </Tab.Navigator>
   )
 }

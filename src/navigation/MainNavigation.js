@@ -7,6 +7,7 @@ import Register from "../screens/Register"
 import Login from "../screens/Login"
 import Comments from "../screens/Comments"
 import TabNavigation from "./TabNavigation"
+import ProfileUsuarios from "../screens/ProfileUsuarios"
 
 const stack = createNativeStackNavigator()
 
@@ -30,9 +31,16 @@ export default function MainNavigation() {
             options={{ headerShown: false }} />
         
         <stack.Screen 
-        name = 'comments'
+        name = 'Comments'
         component={Comments}
         />
+
+      <stack.Screen 
+        name = 'ProfileUsuarios'
+        component={ProfileUsuarios}
+        />
+
+
 
       </stack.Navigator>
     </NavigationContainer>

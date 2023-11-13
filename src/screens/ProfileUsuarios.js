@@ -14,7 +14,9 @@ export default class PerfilUsuarios extends Component {
 
 
     componentDidMount() {
-        db.collection('users').where('owner', '==', this.props.route.params.user).onSnapshot((docs) => {
+        console.log(this.props.route.params.usuario);
+
+        db.collection('users').where('owner', '==', this.props.route.params.usuario).onSnapshot((docs) => {
             let arrDocs = []
             docs.forEach((doc) => {
                 arrDocs.push({
@@ -28,7 +30,7 @@ export default class PerfilUsuarios extends Component {
 
         })
 
-        db.collection('posts').where('owner', '==', this.props.route.params.user).onSnapshot((docs) => {
+        db.collection('posts').where('owner', '==', this.props.route.params.usuario).onSnapshot((docs) => {
             let arrDocs = []
             docs.forEach((doc) => {
                 arrDocs.push({
@@ -50,6 +52,7 @@ export default class PerfilUsuarios extends Component {
     render() {
         return (
             <View>
+
                 <FlatList
                     data={this.state.usuarios}
                     keyExtractor={(item) => item.id.toString()}
@@ -76,7 +79,7 @@ export default class PerfilUsuarios extends Component {
                 />
 
                 <View>
-                    <Text>posteos de {this.props.route.params.user} </Text>
+                    <Text>posteos de {this.props.route.params.usuario} </Text>
                     <Text>Cantidad: {this.state.posteos.length} </Text>
                     <FlatList
                         data={this.state.posteos}

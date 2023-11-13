@@ -4,6 +4,7 @@ import {db, auth} from '../firebase/config'
 import firebase from 'firebase';
 import { FontAwesome } from '@expo/vector-icons';
 
+
 export default class Post extends Component {
     constructor(props){
         super(props)
@@ -42,7 +43,7 @@ export default class Post extends Component {
   }
 
   irAlPerfil(){
-    
+    this.props.data.owner=== auth.currentUser.email? this.props.navigation.navigate("ProfilePropio") : this.props.navigation.navigate("ProfileUsuarios", {usuario: this.props.data.owner})
   }
 
   
@@ -51,7 +52,7 @@ export default class Post extends Component {
   render() {
     return (
       <View>
-        <TouchableOpacity >
+        <TouchableOpacity  onPress={()=> this.irAlPerfil()}>
         <Text> {this.props.data.owner}</Text>
         </TouchableOpacity>
         
