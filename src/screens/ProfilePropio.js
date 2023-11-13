@@ -55,23 +55,26 @@ export default class ProfilePropio extends Component {
 
   logOut(){
     auth.signOut()
-    this.props.navigation.navigate("Register")
+    this.props.navigation.navigate("Login")
   }
 
-  borrarPosteo(postId){
-    db.collection("posts")
-    .doc(postId)
-    .delete()
+  eliminarPosteo(postId){
+    db.collection("posts").doc(postId).delete()
+    
   }
+
+ 
 
 
   
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
   
         <Text> Foto perfil </Text>
+        
+        
         <Text> @{this.state.usuario.userName} </Text>
         <Text> {this.state.usuario.owner} </Text>
 
@@ -85,8 +88,16 @@ export default class ProfilePropio extends Component {
         <FlatList
         data={this.state.posteos}
         keyExtractor={(item) => item.id.toString()}
-        renderItem= {({item})=> <Post data={item}/>}
-          
+        renderItem= {({item})=> <>
+        <Post navigation = {this.props.navigation} data={item.data} id={item.id}/>
+                                  <TouchableOpacity
+                                    onPress={() => this.eliminarPosteo(item.id)} >
+                                
+                                    <Text> Eliminar posteo</Text>
+                                  </TouchableOpacity> </>
+                                  
+                                }
+                                      
 
         
         />
@@ -95,3 +106,12 @@ export default class ProfilePropio extends Component {
     )
   }
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex:1,
+  }
+})
+
+

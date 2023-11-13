@@ -41,11 +41,20 @@ export default class Post extends Component {
       this.props.navigation.navigate('comments', {id: this.props.id})
   }
 
+  irAlPerfil(){
+    
+  }
+
+  
+
 
   render() {
     return (
       <View>
+        <TouchableOpacity >
         <Text> {this.props.data.owner}</Text>
+        </TouchableOpacity>
+        
         <Image
         source = {{uri: this.props.data.fotoUrl} ? {uri: this.props.data.fotoUrl}: "" }
         style = {styles.img}
@@ -88,13 +97,13 @@ export default class Post extends Component {
                   </TouchableOpacity>
                 </View>
 
-            {/*
-            <Text>Mi comentario es: {this.props.data.descripcion}</Text>
-            <Text>Likes</Text>
+                <View>
+                    
+                </View>
 
-            <TouchableOpacity onPress={()=> this.irComentar()}>
-            <Text>Ver Comentarios</Text>
-    </TouchableOpacity>*/}
+
+
+          
 
         </View>
     )
