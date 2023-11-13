@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, StyleSheet, FlatList } from 'react-native'
+import { Text, View, TouchableOpacity, StyleSheet, FlatList, Image } from 'react-native'
 import { auth, db } from "../firebase/config"
 import Post from "../components/Post"
 
@@ -46,13 +46,10 @@ export default class PerfilUsuarios extends Component {
         })
     }
 
-
-
-
     render() {
         return (
             <View>
-
+                
                 <FlatList
                     data={this.state.usuarios}
                     keyExtractor={(item) => item.id.toString()}
@@ -61,7 +58,7 @@ export default class PerfilUsuarios extends Component {
                         <Text>Usuario: {item.data.userName}</Text>
                         {item.data.fotoPerfil != '' ?
                             <Image
-                                source={item.data.fotoPerfil}
+                                source={{uri: item.data.fotoPerfil}}
                                 style={styles.img}
                                 resizeMode='contain'
                             />
@@ -69,6 +66,7 @@ export default class PerfilUsuarios extends Component {
                             ''
                         }
                         <Text>Email: {item.data.owner}</Text>
+                        
                         {item.data.minibio ?
                             <Text>Minibio: {item.data.minibio}</Text>
                             :
@@ -80,7 +78,7 @@ export default class PerfilUsuarios extends Component {
 
                 <View>
                     <Text>posteos de {this.props.route.params.usuario} </Text>
-                    <Text>Cantidad: {this.state.posteos.length} </Text>
+                    <Text>Cantidad de posteos: {this.state.posteos.length} </Text>
                     <FlatList
                         data={this.state.posteos}
                         keyExtractor={(item) => item.id.toString()}
@@ -96,3 +94,14 @@ export default class PerfilUsuarios extends Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+      flex:1,
+    },
+    img: {
+      height: 100,
+      width: 100,
+      borderRadius: 80
+    }
+  })

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, StyleSheet, FlatList } from 'react-native'
+import { Text, View, TouchableOpacity, StyleSheet, FlatList, Image } from 'react-native'
 import { auth, db } from "../firebase/config"
 import Post from "../components/Post"
 
@@ -50,9 +50,6 @@ export default class ProfilePropio extends Component {
     
   }
 
-  
-
-
   logOut(){
     auth.signOut()
     this.props.navigation.navigate("Login")
@@ -63,17 +60,15 @@ export default class ProfilePropio extends Component {
     
   }
 
- 
-
-
-  
-
   render() {
     return (
       <View style={styles.container}>
   
         <Text> Foto perfil </Text>
-        
+        <Image 
+            source = {{uri: this.state.usuario.fotoPerfil}}
+            style = {styles.img}
+        />
         
         <Text> @{this.state.usuario.userName} </Text>
         <Text> {this.state.usuario.owner} </Text>
@@ -83,6 +78,10 @@ export default class ProfilePropio extends Component {
         <TouchableOpacity onPress={()=> this.logOut()}>
           <Text> Logout</Text>
         </TouchableOpacity>
+
+        <Text>
+          Cantidad de posteos: {this.state.posteos.length}
+        </Text>
 
 
         <FlatList
@@ -97,20 +96,20 @@ export default class ProfilePropio extends Component {
                                   </TouchableOpacity> </>
                                   
                                 }
-                                      
-
-        
         />
-
       </View>
     )
   }
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex:1,
+  },
+  img: {
+    height: 100,
+    width: 100,
+    borderRadius: 80
   }
 })
 

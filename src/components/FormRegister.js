@@ -57,10 +57,13 @@ export default class FormRegister extends Component {
                     owner: this.state.mail,
                     createdAt: Date.now(),
                     userName: this.state.userName,
-                    minibio: this.state.minibio,
-                    fotoPerfil: this.state.fotoPerfil
+                    minibio: '',
+                    fotoPerfil: ''
                 }))
-                .then((resp) => this.props.navigation.navigate('InfoAdicionalUser'))
+                .then((resp) => {
+                    console.log(resp);
+                    this.props.navigation.navigate('InfoAdicionalUser', {docId: resp.id})
+                })
                 .catch((e) => {
                     console.log(e), this.setState({
                         errorMailFirebase: e.message
@@ -95,13 +98,6 @@ export default class FormRegister extends Component {
 
                     <TextInput
                         style={styles.input}
-                        placeholder='Crea una minibio'
-                        value={this.state.minibio}
-                        onChangeText={(text) => this.setState({ minibio: text })}
-                    />
-
-                    <TextInput
-                        style={styles.input}
                         placeholder='Dinos tu password'
                         keyboardType='default'
                         value={this.state.password}
@@ -109,16 +105,15 @@ export default class FormRegister extends Component {
                         onChangeText={(text) => this.setState({ password: text, errores: { ...this.state.errores, errorPassword: "" } })}
 
                     />
-                    {this.state.errores.errorPassword !== "" ? <Text>{this.state.errores.errorPassword}</Text> : ""}
 
                     <TextInput
                         style={styles.input}
-                        placeholder='Carga tu foto de perfil'
-                        keyboardType='default'
-                        value={this.state.fotoPerfil}
-                        secureTextEntry={true}
-                        onChangeText={(text) => this.setState({ fotoPerfil: text })}
+                        placeholder='Crea una minibio'
+                        value={this.state.minibio}
+                        onChangeText={(text) => this.setState({ minibio: text })}
                     />
+
+                    {this.state.errores.errorPassword !== "" ? <Text>{this.state.errores.errorPassword}</Text> : ""}
 
                     {this.state.errorMailFirebase !== "" ? <Text>{this.state.errorMailFirebase}</Text> : ""}
 
@@ -127,6 +122,7 @@ export default class FormRegister extends Component {
                     >
                         ¿Tienes una cuenta?
                     </Text>
+                    
                     <TouchableOpacity
                         onPress={() => this.props.navigation.navigate('Login')}
                     >
@@ -134,11 +130,12 @@ export default class FormRegister extends Component {
                     </TouchableOpacity>
 
                     {this.state.mail== "" || this.state.userName== "" || this.state.password== "" ? "": 
+                    
                     <TouchableOpacity
                     onPress={() => this.registrarUsuario(this.state.userName, this.state.mail, this.state.password)}
                     style={styles.btn} >
                     <Text style={styles.textBtn} > Registrame ahora</Text>
-                </TouchableOpacity>
+                    </TouchableOpacity>
 }
                     
                 </View>

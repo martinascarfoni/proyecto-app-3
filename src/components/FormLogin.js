@@ -23,7 +23,7 @@ export default class FormLogin extends Component {
             this.setState({
                 errores: {
                     ...this.state.errores,
-                    errorMail: "Verificá que el mail sea valido."
+                    errorMail: "Verificá que el mail sea válido"
                 }
             })
         }
@@ -31,7 +31,7 @@ export default class FormLogin extends Component {
             this.setState({
                 errores: {
                     ...this.state.errores,
-                    errorPassword: "La contraseña no puede estar vacía"
+                    errorPassword: "Verificá que la contraseña sea válida"
                 }
             })
         } else {

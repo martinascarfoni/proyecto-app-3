@@ -36,7 +36,7 @@ export default class Comments extends Component {
                         <Text>{item.comentario} </Text> 
                         </View>}
                 /> :
-                ""
+                <Text>"Aún no hay comentarios"</Text>
             
             }
                 

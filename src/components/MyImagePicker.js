@@ -1,6 +1,7 @@
-import { Text, View, TouchableOpacity, Image, StyleSheet } from 'react-native'
+import { Text, View, TouchableOpacity, Image, StyleSheet, TouchableHighlightBase } from 'react-native'
 import React, { Component } from 'react'
-import * as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from 'expo-image-picker'
+import { storage } from '../firebase/config'
 
 export default class MyImagePicker extends Component {
     constructor(props){
@@ -13,7 +14,27 @@ export default class MyImagePicker extends Component {
     activarImagePicker(){
         ImagePicker.launchImageLibraryAsync()
         .then(imagenData => this.setState({imagenCargada: imagenData.assets[0].uri}))         // al then solo entra si el usuario selecciona una imagen
-        .catch()
+        .catch(err => console.log(err))
+    }
+
+    rechazarImagen(){
+        this.setState({
+            imagenCargada: ''
+        })
+    }
+
+    aceptarImagen(){
+        fetch(this.state.imagenCargada)
+        .then(resp => resp.blob())
+        .then(imagen => {
+            let ref = storage.ref(`imgPerfil/${Date.now()}.jpeg`)
+            ref.put(imagen)
+            .then(() => {
+                ref.getDownloadURL()
+                .then(url => this.props.actualizarFotoDePerfil(url))
+            })
+        })
+        .catch(err => console.log(err))
     }
 
   render() {
@@ -29,12 +50,13 @@ export default class MyImagePicker extends Component {
                     }}
                     style={styles.img}
                 />
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => this.aceptarImagen()}>
                     <Text>
                         Aceptar imagen
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                
+                <TouchableOpacity onPress={() => this.rechazarImagen()}>
                     <Text>
                         Rechazar imagen
                     </Text>
