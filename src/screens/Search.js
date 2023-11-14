@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, TextInput, StyleSheet, FlatList } from 'react-native'
 import {db} from '../firebase/config'
 import Usuario from '../components/Usuario'
+import FormSearch from "../components/FormSearch"
 
 export default class Search extends Component {
   constructor(props){
     super(props)
     this.state = {
-      searchData: [],
-      valorInput: [],
+      searchData: "",
+      valorInput: "",
       busqueda: true,
       backup: []
     }
@@ -24,62 +25,56 @@ export default class Search extends Component {
         })
       })
       this.setState({
-        backup: arrUsuarios
-      }, () => console.log(this.state.searchData))
+        backup: arrUsuarios,
+      }, () => console.log(this.state.backup))
     })
   }
   
   filtrarUsuarios(input){
-    let usersF = this.state.backup.filter((elm) => elm.data.userName.toLowerCase().includes(input.toLowerCase()))
+    let usersF = this.state.backup.filter((elm) => elm.data.userName.toLowerCase().includes(input.toLowerCase()) ||
+    elm.data.owner.toLowerCase().includes(input.toLowerCase()) 
+    
+    )
     this.setState({
       searchData: usersF, 
       busqueda: false
     })
   }
 
-  volver(){
+  actualizarInput(valor){
     this.setState({
-      valorInput: ""
+      valorInput: valor
     })
   }
   
+
+ 
+  
   render() {
     return (
-        this.state.busqueda ? 
         <>
         <Text>FormSearch</Text>
-        
-        <TextInput
-            style = {styles.input}
-            placeholder = 'Busca el usuario'
-            keyboardType = 'default'
-            value = {this.state.valorInput}
-            onChangeText = { (text) => this.setState({valorInput: text})}
-        />
-        <TouchableOpacity onPress = {() => this.filtrarUsuarios(this.state.valorInput)} style={styles.btn}>
-            <Text>Buscar</Text>
-        </TouchableOpacity>
-        </>
-        :
-        <>
-        <TouchableOpacity onPress={()=> this.volver()}>
-          <Text> Volver </Text>
-        </TouchableOpacity>
 
-        {this.state.searchData.length !== 0 ?
-        <FlatList 
-        data= {this.state.searchData}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({item}) => <Usuario data={item.data} id={item.id} navigation = {this.props.navigation} />}
-        />  :
-        <Text> El usuario no existe</Text> }
-   
+      <FormSearch filtrarUsuarios={(nombre) => this.filtrarUsuarios(nombre)} actualizarInput={(valor) => this.actualizarInput(valor)}/>
 
-        
-        </>
+
+          {this.state.valorInput !== "" ? (
+             this.state.searchData.length != 0 ?
+             <FlatList 
+             data= {this.state.searchData}
+             keyExtractor={(item) => item.id.toString()}
+             renderItem={({item}) => <Usuario data={item.data} id={item.id} navigation = {this.props.navigation} />}
+             /> 
+             :
+             <Text>No se han encontrado resultados</Text>  ) : (
+              <Text>Busca un usuario</Text>
+             )}
+      </> 
     )
   }
 }
+
+
 
 const styles = StyleSheet.create({
   input:{

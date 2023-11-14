@@ -7,10 +7,10 @@ import { getAuth, deleteUser } from "firebase/auth";
 
 
 export default class ProfilePropio extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
-    this.state= {
-      usuario:[],
+    this.state = {
+      usuario: [],
       posteos: [],
       id: ""
     }
@@ -18,55 +18,55 @@ export default class ProfilePropio extends Component {
 
 
 
-  componentDidMount(){
+  componentDidMount() {
 
     // busco datos del owner
-    db.collection('users').where("owner", "==", auth.currentUser.email).onSnapshot((docs)=>{
+    db.collection('users').where("owner", "==", auth.currentUser.email).onSnapshot((docs) => {
       let arrUsuario = []
       docs.forEach((doc) => {
         arrUsuario.push({
-          id:doc.id,
+          id: doc.id,
           data: doc.data()
         })
       })
 
       this.setState({
-        usuario : arrUsuario[0].data,
-        id:  arrUsuario[0].id
+        usuario: arrUsuario[0].data,
+        id: arrUsuario[0].id
       }, () => console.log(this.state.usuario, this.state.id))
 
     })
 
     // busco datos de los posteos del current user
-    db.collection('posts').where("owner", "==", auth.currentUser.email).onSnapshot((docs)=>{
+    db.collection('posts').where("owner", "==", auth.currentUser.email).onSnapshot((docs) => {
       // console.log(docs)
       let arrPosts = []
       docs.forEach((doc) => {
         arrPosts.push({
-          id:doc.id,
+          id: doc.id,
           data: doc.data()
         })
       })
-      
+
       this.setState({
-        posteos : arrPosts
+        posteos: arrPosts
       }, () => console.log(this.state.posteos))
 
     })
-    
+
   }
 
-  logOut(){
+  logOut() {
     auth.signOut()
     this.props.navigation.navigate("Login")
   }
 
-  eliminarPosteo(postId){
+  eliminarPosteo(postId) {
     db.collection("posts").doc(postId).delete()
-    
+
   }
 
-  eliminarUsuario(userId){
+  eliminarUsuario(userId) {
     const user = auth.currentUser;
     const userEmail = user.email;
     db.collection('users')
@@ -101,36 +101,36 @@ export default class ProfilePropio extends Component {
     // auth.signOut()
     // db.collection("users").doc(userId).delete()
     // this.props.navigation.navigate("Login")
-    
 
-  //   deleteUser(user)
-  //   .then(()=> this.props.navigation.navigate("Login"))
-  //   .catch(err => console.log(err))
-  // 
+
+    //   deleteUser(user)
+    //   .then(()=> this.props.navigation.navigate("Login"))
+    //   .catch(err => console.log(err))
+    // 
   }
 
 
   render() {
     return (
       <View style={styles.container}>
-  
+
         <Text> Foto perfil </Text>
-        <Image 
-            source = {{uri: this.state.usuario.fotoPerfil}}
-            style = {styles.img}
+        <Image
+          source={{ uri: this.state.usuario.fotoPerfil }}
+          style={styles.img}
         />
-        
+
         <Text> @{this.state.usuario.userName} </Text>
         <Text> {this.state.usuario.owner} </Text>
 
-        {this.state.usuario.minibio !== "" ? <Text> {this.state.usuario.minibio} </Text> : "" }
-      
-        <TouchableOpacity onPress={()=> this.logOut()}>
+        {this.state.usuario.minibio !== "" ? <Text> {this.state.usuario.minibio} </Text> : ""}
+
+        <TouchableOpacity onPress={() => this.logOut()}>
           <Text> Logout</Text>
         </TouchableOpacity>
 
-        
-        <TouchableOpacity onPress={()=> this.eliminarUsuario()}>
+
+        <TouchableOpacity onPress={() => this.eliminarUsuario()}>
           <Text> Eliminar mi usuario</Text>
         </TouchableOpacity>
 
@@ -140,17 +140,17 @@ export default class ProfilePropio extends Component {
 
 
         <FlatList
-        data={this.state.posteos}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem= {({item})=> <>
-        <Post navigation = {this.props.navigation} data={item.data} id={item.id}/>
-                                  <TouchableOpacity
-                                    onPress={() => this.eliminarPosteo(item.id)} >
-                                
-                                    <Text> Eliminar posteo</Text>
-                                  </TouchableOpacity> </>
-                                  
-                                }
+          data={this.state.posteos}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => <>
+            <Post navigation={this.props.navigation} data={item.data} id={item.id} />
+            <TouchableOpacity
+              onPress={() => this.eliminarPosteo(item.id)} >
+
+              <Text> Eliminar posteo</Text>
+            </TouchableOpacity> </>
+
+          }
         />
       </View>
     )
@@ -159,7 +159,7 @@ export default class ProfilePropio extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
+    flex: 1,
   },
   img: {
     height: 100,

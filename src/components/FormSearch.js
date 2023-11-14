@@ -1,21 +1,47 @@
-import { Text, View, TouchableOpacity } from 'react-native'
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { View, TextInput, Button, StyleSheet } from 'react-native';
 
 export default class FormSearch extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            valorInput: ''
-        }
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    
+  evitarSubmit(evento) {
+    evento.preventDefault();
+  }
+
+  controlarCambios(text) {
+    this.props.actualizarInput(text);
+    this.props.filtrarUsuarios(text);
+  }
+
   render() {
     return (
-      <View>
-        
+      <View style={styles.container}>
+        <TextInput
+          style={styles.busqueda}
+          placeholder="Búsqueda"
+          name="busqueda"
+          onChangeText={(text) => this.controlarCambios(text)}
+        />
       </View>
-    )
+    );
   }
 }
 
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    width: '100%',
+  },
+  busqueda: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    padding: 10,
+    width: '100%',
+  },
+});

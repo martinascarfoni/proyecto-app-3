@@ -68,7 +68,7 @@ return (
 
             <TouchableOpacity onPress={() => this.onSubmit({ 
               descripcion: this.state.descripcion,
-              fotoUrl: this.state.urlFoto 
+              fotoUrl: this.state.urlFoto
               })}
               >
               <Text>Enviar</Text>

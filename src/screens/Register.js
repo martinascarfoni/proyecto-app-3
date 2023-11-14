@@ -26,15 +26,7 @@ export default class Register extends Component {
   render() {
     return (
       <View>
-      
-        {
-          this.state.hayUsuario ?
           <FormRegister navigation={this.props.navigation}/>
-          :
-          <ActivityIndicator size="large"
-          color={'blue'}/>
-        }
-        
       </View>
     )
   }
