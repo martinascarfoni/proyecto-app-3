@@ -19,7 +19,7 @@ export default class Comments extends Component {
             .onSnapshot((doc) => {
                 console.log(doc.data())
                 if (doc) {
-                    this.setState({ dataPost: doc.data() })
+                    this.setState({ dataPost: doc.data() }, console.log(this.state.dataPost))
                 }
             })
     }
@@ -27,7 +27,8 @@ export default class Comments extends Component {
     render() {
         return (
             <View>
-                { this.state.dataPost !== null ?
+                { this.state.dataPost !== null ? 
+                this.state.dataPost.comentarios.length > 0 ?
                 <FlatList
                     data={this.state.dataPost.comentarios}
                     keyExtractor={(item) => item.owner.toString()}
@@ -36,7 +37,8 @@ export default class Comments extends Component {
                         <Text>{item.comentario} </Text> 
                         </View>}
                 /> :
-                <Text>"Aún no hay comentarios"</Text>
+                <Text>"Aún no hay comentarios"</Text>  :
+                ""
             
             }
                 
