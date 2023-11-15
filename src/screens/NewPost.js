@@ -27,7 +27,14 @@ export default class NewPost extends Component {
       likes: [],
       comentarios: []
     })
-    .then(()=> this.props.navigation.navigate("Home"))
+    .then(()=> {
+      this.setState({
+        descripcion: '',
+        urlFoto: "",
+        paso1: true
+      })
+      this.props.navigation.navigate("Home")
+    })
     .catch((e) => console.log(e))
   }
 
