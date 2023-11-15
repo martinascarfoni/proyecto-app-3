@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
+import { Text, View, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import { auth, db } from "../firebase/config"
 import Login from "../screens/Login"
 
@@ -75,6 +75,7 @@ export default class FormRegister extends Component {
     render() {
         return (
             <View style={styles.Loginformu}>
+                <Image style={styles.imag} source={require('../../assets/logo.png')}/>
                 <Text style={styles.titulos}>Registrate a mi app</Text>
 
                 <View>
@@ -186,6 +187,11 @@ const styles = StyleSheet.create({
         fontWeight:'bold'
 
     },
+    imag: { 
+        justifyContent: 'center',
+        padding: 35,
+        },
+
 
     })
 

@@ -51,9 +51,9 @@ export default class Post extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.home} >
         <TouchableOpacity onPress={() => this.irAlPerfil()}>
-          <Text> {this.props.data.owner}</Text>
+          <Text style={styles.usuarios}> {this.props.data.owner}</Text>
         </TouchableOpacity>
 
         <Image
@@ -61,8 +61,8 @@ export default class Post extends Component {
           style={styles.img}
           resizeMode='contain'
         />
-        <Text>{this.props.data.descripcion}</Text>
-        <View>
+        <Text style={styles.desc} >{this.props.data.descripcion}</Text>
+        <View style={styles.like}>
           <Text>
             {this.props.data.likes.length}
           </Text>
@@ -92,7 +92,7 @@ export default class Post extends Component {
         <View>
           <TouchableOpacity
             onPress={() => this.irComentar()}>
-            <Text> Comentarios: {this.props.data.comentarios.length}</Text>
+            <Text style={styles.coments}> Comentarios: {this.props.data.comentarios.length}</Text>
           </TouchableOpacity>
 
           <FlatList
@@ -100,8 +100,8 @@ export default class Post extends Component {
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => (
               <View >
-                <Text>{item.owner}:</Text>
-                <Text>{item.comentario}</Text>
+                <Text style={styles.usuarios2}>{item.owner}:</Text>
+                <Text style={styles.coments2}>{item.comentario}</Text>
               </View>
             )}
           />
@@ -122,6 +122,54 @@ export default class Post extends Component {
 
 const styles = StyleSheet.create({
   img: {
-    height: 200
-  }
+    height: 200,
+    flex: 1,
+    resizeMode: 'cover', 
+    justifyContent: 'center',
+  },
+  home: {
+    backgroundColor: '#d9d9d9',
+    margin: 15,
+  },
+  usuarios: {
+    padding: 5,
+    paddingLeft: 10, 
+    color: '#434343',
+    fontWeight:'bold',
+    textDecorationLine: 'underline',
+    backgroundColor: '#b7b7b7'
+  }, 
+  coments: {
+    padding: 5,
+    marginBottom: 10, 
+    color: '#434343',
+    fontWeight:'bold',
+    backgroundColor: '#d2d2d2'
+    
+  },
+  like: {
+    padding: 5,
+    margin: 8,
+    marginBottom: 10, 
+    color: '#434343',
+  },
+  desc: {
+    padding: 5,
+    marginBottom: 10, 
+    color: '#434343',
+    backgroundColor: '#d2d2d2'
+  },
+  usuarios2: {
+    padding: 5,
+    paddingLeft: 10, 
+    color: '#434343',
+    fontWeight:'bold',
+    textDecorationLine: 'underline',
+  },
+  coments2:{
+    padding: 5,
+    paddingLeft: 10, 
+    color: '#434343',
+  } 
+
 })
