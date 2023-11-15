@@ -77,6 +77,14 @@ export default class ProfilePropio extends Component {
           doc.ref
             .delete()
             .then(() => {
+              user.delete()
+                .then(() => {
+                  console.log('Usuario eliminado correctamente');
+                  this.props.navigation.navigate('Login');
+                })
+                .catch((error) => {
+                  console.error('Error al eliminar usuario:', error);
+                });
               console.log('Datos del usuario eliminados correctamente');
             })
             .catch((error) => {
@@ -88,14 +96,7 @@ export default class ProfilePropio extends Component {
         console.error('Error al buscar datos del usuario:', error);
       });
 
-    user.delete()
-      .then(() => {
-        console.log('Usuario eliminado correctamente');
-        this.props.navigation.navigate('Login');
-      })
-      .catch((error) => {
-        console.error('Error al eliminar usuario:', error);
-      });
+
 
 
     // auth.signOut()
