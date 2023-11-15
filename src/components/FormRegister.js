@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
         width: 350,
         margin: 20, 
         padding: 35,
-        backgroundColor: 'rgba(255, 182, 185, 0.7)',
+        backgroundColor: 'rgba(235, 235, 235, 0.7))',
         borderRadius: 15,
         },
     titulos: {
