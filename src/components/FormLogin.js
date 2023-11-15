@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
         width: 350,
         margin: 20, 
         padding: 35,
-        backgroundColor: 'rgba(255, 182, 185, 0.9)',
+        backgroundColor: 'rgba(255, 182, 185, 0.7)',
         borderRadius: 15,
         },
     titulos: {
