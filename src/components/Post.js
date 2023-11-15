@@ -63,7 +63,7 @@ export default class Post extends Component {
         />
         <Text style={styles.desc} >{this.props.data.descripcion}</Text>
         <View style={styles.like}>
-          <Text>
+          <Text style={styles.likenum}>
             {this.props.data.likes.length}
           </Text>
           {
@@ -99,7 +99,7 @@ export default class Post extends Component {
             data={this.props.data.comentarios.slice(-4).reverse()} // electiva de mostrar 4 comentarios
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => (
-              <View >
+              <View style={styles.comentsglb}>
                 <Text style={styles.usuarios2}>{item.owner}:</Text>
                 <Text style={styles.coments2}>{item.comentario}</Text>
               </View>
@@ -148,10 +148,10 @@ const styles = StyleSheet.create({
     
   },
   like: {
-    padding: 5,
-    margin: 8,
-    marginBottom: 10, 
+    padding: 5, 
     color: '#434343',
+    flexDirection: 'row', 
+    alignItems: 'center',
   },
   desc: {
     padding: 5,
@@ -160,16 +160,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#d2d2d2'
   },
   usuarios2: {
-    padding: 5,
+    paddingBottom: 10 ,
     paddingLeft: 10, 
+    paddingRight: 3,
     color: '#434343',
     fontWeight:'bold',
     textDecorationLine: 'underline',
   },
   coments2:{
-    padding: 5,
-    paddingLeft: 10, 
     color: '#434343',
-  } 
+    paddingBottom: 10,
+  },
+  likenum: {
+    marginLeft: 5,
+    marginRight: 3,
+  },
+  comentsglb:{
+    flexDirection: 'row', alignItems: 'center'
+  }
 
 })
