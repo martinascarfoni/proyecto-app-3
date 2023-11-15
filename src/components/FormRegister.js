@@ -74,8 +74,8 @@ export default class FormRegister extends Component {
 
     render() {
         return (
-            <View>
-                <Text>Registrate a mi app</Text>
+            <View style={styles.Loginformu}>
+                <Text style={styles.titulos}>Registrate a mi app</Text>
 
                 <View>
                     <TextInput
@@ -118,7 +118,7 @@ export default class FormRegister extends Component {
                     {this.state.errorMailFirebase !== "" ? <Text>{this.state.errorMailFirebase}</Text> : ""}
 
                     <Text
-                        style={styles.textLink}
+                        style={styles.titulos}
                     >
                         ¿Tienes una cuenta?
                     </Text>
@@ -126,7 +126,7 @@ export default class FormRegister extends Component {
                     <TouchableOpacity
                         onPress={() => this.props.navigation.navigate('Login')}
                     >
-                        <Text> Logueate aquí! </Text>
+                        <Text style={styles.regi}> Logueate aquí! </Text>
                     </TouchableOpacity>
 
                     {this.state.mail== "" || this.state.userName== "" || this.state.password== "" ? "": 
@@ -146,23 +146,49 @@ export default class FormRegister extends Component {
 }
 
 const styles = StyleSheet.create({
-    input: {
+
+     input:{
         borderWidth: 1,
-        borderColor: 'green',
-        marginBottom: 24
-    },
-    btn: {
-        backgroundColor: 'purple',
-        padding: 16
-    },
-    textBtn: {
-        color: 'white'
-    },
-    textLink: {
+        borderColor: '#666666',
+        marginBottom: 24, 
+        color: '#434343',
+        borderRadius: 3,
+        padding: 10,
+
+     },
+    btn:{
+        backgroundColor:'purple',
+        padding:16,
         marginBottom: 24,
-        justifyContent: "center"
-    }
-})
+        borderRadius: 5,
+    },
+    textBtn:{
+        color:'white'
+    },
+    Loginformu: {
+        width: 350,
+        margin: 20, 
+        padding: 35,
+        backgroundColor: 'rgba(255, 182, 185, 0.9)',
+        borderRadius: 15,
+        },
+    titulos: {
+        padding: 5,
+        marginBottom: 10, 
+        color: '#434343',
+        fontWeight:'bold'
+
+    },
+    regi: {
+        padding: 5,
+        marginBottom: 10, 
+        color: 'purple',
+        fontWeight:'bold'
+
+    },
+
+    })
+
 
 
 

@@ -1,4 +1,4 @@
-import { Text, View, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
+import { Text, View, TextInput, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native'
 import React, { Component } from 'react'
 import { auth, db } from "../firebase/config"
 import Register from "../screens/Register"
@@ -14,6 +14,7 @@ export default class FormLogin extends Component {
                 errorMail: ""
             },
             errorMailOContrasenaInconrrecta: ""
+
         }
     }
 
@@ -45,8 +46,9 @@ export default class FormLogin extends Component {
 
     render() {
         return (
-            <View>
-                <Text>Logueate a mi app!</Text>
+            <ImageBackground source={require('../../assets/vlog.jpg')} style={styles.backgroundImage}>
+            <View style={styles.Loginformu}>
+                <Text style={styles.titulos}>Logueate a mi app!</Text>
                 <View>
                 <TextInput
                     style = {styles.input}
@@ -69,20 +71,21 @@ export default class FormLogin extends Component {
 
                 {this.state.errorMailOContrasenaInconrrecta !== '' ? <Text>El mail o la contraseña son incorrectos</Text> : ""}
 
-                <Text>¿No tienes una cuenta aún?</Text>
+                <Text style={styles.titulos} >¿No tienes una cuenta aún?</Text>
                 <TouchableOpacity
                         onPress={() => this.props.navigation.navigate('Register')}>
-                        <Text> Registrate aquí! </Text>
+                        <Text style={styles.regi}> Registrate aquí! </Text>
                     </TouchableOpacity>
 
                 {this.state.mail== "" || this.state.userName== "" || this.state.password== "" ? "": 
                 <TouchableOpacity
                     style={styles.btn}
                     onPress={() => {this.loguearUsuario(this.state.mail, this.state.password)}}>
-                    <Text>Iniciar sesión</Text>
+                    <Text style={styles.textBtn}>Iniciar sesión</Text>
                 </TouchableOpacity>}
                 </View>
             </View>
+            </ImageBackground>
 
         )
     }
@@ -91,15 +94,47 @@ export default class FormLogin extends Component {
 const styles = StyleSheet.create({
     input:{
         borderWidth: 1,
-        borderColor: 'green',
-        marginBottom: 24
+        borderColor: '#666666',
+        marginBottom: 24, 
+        color: '#434343',
+        borderRadius: 3,
+        padding: 10,
+
     },
     btn:{
         backgroundColor:'purple',
         padding:16,
-        marginBottom: 24
+        marginBottom: 24,
+        borderRadius: 5,
     },
     textBtn:{
         color:'white'
+    },
+    Loginformu: {
+        width: 350,
+        margin: 20, 
+        padding: 35,
+        backgroundColor: 'rgba(255, 182, 185, 0.9)',
+        borderRadius: 15,
+        },
+    titulos: {
+        padding: 5,
+        marginBottom: 10, 
+        color: '#434343',
+        fontWeight:'bold'
+
+    },
+    regi: {
+        padding: 5,
+        marginBottom: 10, 
+        color: 'purple',
+        fontWeight:'bold'
+
+    },
+    backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover', 
+        justifyContent: 'center',
     }
+
 })

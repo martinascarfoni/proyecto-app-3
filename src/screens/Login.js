@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View} from 'react-native'
 import FormLogin from '../components/FormLogin'
 import { auth } from "../firebase/config"
 
@@ -7,7 +7,6 @@ import { auth } from "../firebase/config"
 
 
 export default class Login extends Component {
-
   componentDidMount(){
     auth.onAuthStateChanged((user)=>{
         if (user !== null){
@@ -18,9 +17,12 @@ export default class Login extends Component {
 
   render() {
     return (
-      <View>
-        <FormLogin navigation={this.props.navigation}/>
+      <View > 
+        <FormLogin  navigation={this.props.navigation}/>
       </View>
+      
     )
   }
 }
+
+
