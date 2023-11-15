@@ -33,6 +33,5 @@ const styles = StyleSheet.create({
     resizeMode: 'cover', 
     justifyContent: 'center',
   },
- 
 
 })
