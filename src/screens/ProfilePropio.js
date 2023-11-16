@@ -115,27 +115,27 @@ export default class ProfilePropio extends Component {
     return (
       <View style={styles.container}>
 
-        <Text> Foto perfil </Text>
+        <Text style={styles.titulos}> Foto perfil </Text>
         <Image
           source={{ uri: this.state.usuario.fotoPerfil }}
           style={styles.img}
         />
 
-        <Text> @{this.state.usuario.userName} </Text>
-        <Text> {this.state.usuario.owner} </Text>
+        <Text style={styles.titulos}> @{this.state.usuario.userName} </Text>
+        <Text style={styles.titulos}> {this.state.usuario.owner} </Text>
 
-        {this.state.usuario.minibio !== "" ? <Text> {this.state.usuario.minibio} </Text> : ""}
+        {this.state.usuario.minibio !== "" ? <Text style={styles.titulos}> {this.state.usuario.minibio} </Text> : ""}
+        <View style={styles.cont2}>
+          <TouchableOpacity onPress={() => this.logOut()}>
+            <Text style={styles.lgo}> Logout</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => this.logOut()}>
-          <Text> Logout</Text>
-        </TouchableOpacity>
 
-
-        <TouchableOpacity onPress={() => this.eliminarUsuario()}>
-          <Text> Eliminar mi usuario</Text>
-        </TouchableOpacity>
-
-        <Text>
+          <TouchableOpacity onPress={() => this.eliminarUsuario()}>
+            <Text style={styles.elmu}> Eliminar mi usuario</Text>
+          </TouchableOpacity>
+        </View>
+        <Text style={styles.titulos} >
           Cantidad de posteos: {this.state.posteos.length}
         </Text>
 
@@ -148,7 +148,7 @@ export default class ProfilePropio extends Component {
             <TouchableOpacity
               onPress={() => this.eliminarPosteo(item.id)} >
 
-              <Text> Eliminar posteo</Text>
+              <Text style={styles.elmpost} > Eliminar posteo</Text>
             </TouchableOpacity> </>
 
           }
@@ -161,11 +161,36 @@ export default class ProfilePropio extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#39343d',
+  },
+  titulos: {
+    padding: 5, 
+    color: '#cccccc'
   },
   img: {
     height: 100,
     width: 100,
     borderRadius: 80
+  },
+  elmpost: {
+    color: '#ff6b6b',
+    padding: 10,
+    marginBottom: 10, 
+    fontWeight: 'bold'
+  },
+  elmu:{
+    color: '#ff6b6b',
+    padding: 10, 
+    fontWeight: 'bold',
+  },
+  lgo: {
+    color: '#cccccc',
+    padding: 10, 
+    fontWeight: 'bold',
+  },
+  cont2: {
+    flexDirection: 'row',
+    alignItems: 'center'
   }
 })
 

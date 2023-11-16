@@ -123,6 +123,7 @@ export default class Post extends Component {
 const styles = StyleSheet.create({
   img: {
     height: 200,
+
     flex: 1,
     resizeMode: 'cover', 
     justifyContent: 'center',
@@ -130,6 +131,7 @@ const styles = StyleSheet.create({
   home: {
     backgroundColor: '#d9d9d9',
     margin: 15,
+    borderRadius: 10,
   },
   usuarios: {
     padding: 5,
@@ -137,7 +139,9 @@ const styles = StyleSheet.create({
     color: '#434343',
     fontWeight:'bold',
     textDecorationLine: 'underline',
-    backgroundColor: '#b7b7b7'
+    backgroundColor: '#b7b7b7', 
+    borderRadius: 10,
+    
   }, 
   coments: {
     padding: 5,

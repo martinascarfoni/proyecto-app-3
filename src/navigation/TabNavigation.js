@@ -17,7 +17,7 @@ export default function TabNavigation() {
         component={Home}
         options={{
             headerShown:false,
-            tabBarIcon: ()=> <FontAwesome5 name='home' size={24} color='green' />
+            tabBarIcon: ()=> <FontAwesome5 name='home' size={24} color='purple' />
         }}
         />
         <Tab.Screen 

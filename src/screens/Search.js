@@ -52,7 +52,8 @@ export default class Search extends Component {
   
   render() {
     return (
-        <>
+      <>
+      <View style={styles.container}>
         <Text>FormSearch</Text>
 
       <FormSearch filtrarUsuarios={(nombre) => this.filtrarUsuarios(nombre)} actualizarInput={(valor) => this.actualizarInput(valor)}/>
@@ -69,6 +70,7 @@ export default class Search extends Component {
              <Text>No se han encontrado resultados</Text>  ) : (
               <Text>Busca un usuario</Text>
              )}
+        </View>
       </> 
     )
   }
@@ -88,5 +90,10 @@ const styles = StyleSheet.create({
   },
   textBtn:{
       color:'white'
-    }
+  },
+container: {
+  flex: 1,
+  backgroundColor: '#666666'
+},
+
 })
