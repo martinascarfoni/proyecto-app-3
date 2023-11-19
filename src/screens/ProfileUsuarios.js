@@ -48,14 +48,15 @@ export default class PerfilUsuarios extends Component {
 
     render() {
         return (
-            <View>
+            <View style={styles.container} >
+                <View>
                 
                 <FlatList
                     data={this.state.usuarios}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => <View>
 
-                        <Text>Usuario: {item.data.userName}</Text>
+                        <Text style={styles.txt} >Usuario: {item.data.userName}</Text>
                         {item.data.fotoPerfil != '' ?
                             <Image
                                 source={{uri: item.data.fotoPerfil}}
@@ -65,10 +66,10 @@ export default class PerfilUsuarios extends Component {
                             :
                             ''
                         }
-                        <Text>Email: {item.data.owner}</Text>
+                        <Text style={styles.txt}>Email: {item.data.owner}</Text>
                         
                         {item.data.minibio ?
-                            <Text>Minibio: {item.data.minibio}</Text>
+                            <Text style={styles.txt}>Minibio: {item.data.minibio}</Text>
                             :
                             ''
                         }
@@ -77,8 +78,8 @@ export default class PerfilUsuarios extends Component {
                 />
 
                 <View>
-                    <Text>posteos de {this.props.route.params.usuario} </Text>
-                    <Text>Cantidad de posteos: {this.state.posteos.length} </Text>
+                    <Text style={styles.txt}>posteos de {this.props.route.params.usuario} </Text>
+                    <Text style={styles.txt}>Cantidad de posteos: {this.state.posteos.length} </Text>
                     <FlatList
                         data={this.state.posteos}
                         keyExtractor={(item) => item.id.toString()}
@@ -89,6 +90,7 @@ export default class PerfilUsuarios extends Component {
                         }
                     />
                 </View>
+                </View>
 
             </View>
         )
@@ -97,11 +99,15 @@ export default class PerfilUsuarios extends Component {
 
 const styles = StyleSheet.create({
     container: {
-      flex:1,
+        flex: 1,
+      backgroundColor: '#39343d'
     },
     img: {
       height: 100,
       width: 100,
       borderRadius: 80
+    },
+    txt: {
+        color: "#cccccc"
     }
   })

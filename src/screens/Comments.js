@@ -62,12 +62,12 @@ const styles = StyleSheet.create({
         paddingBottom: 10 ,
         paddingLeft: 10, 
         paddingRight: 3,
-        color: 'white',
+        color: '#cccccc',
         fontWeight:'bold',
         textDecorationLine: 'underline',
       },
       coments2:{
-        color: 'white',
+        color: '#cccccc',
         paddingBottom: 10,
       },
       comentsglb:{

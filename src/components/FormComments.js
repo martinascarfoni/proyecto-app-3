@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(115, 115, 115, 1)',
     marginBottom: 24,
-    color: "white",
+    color: "#cccccc",
     marginLeft: 10
   },
   btn: {
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     marginBottom: 50
   },
   textBtn: {
-    color: 'white',
+    color: '#cccccc',
   
   }
 })

@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     padding: 16
   },
   textBtn: {
-    color: 'white',
+    color: '#cccccc',
     marginLeft: 20
   },
   container: {

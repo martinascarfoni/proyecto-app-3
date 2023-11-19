@@ -96,18 +96,6 @@ export default class ProfilePropio extends Component {
         console.error('Error al buscar datos del usuario:', error);
       });
 
-
-
-
-    // auth.signOut()
-    // db.collection("users").doc(userId).delete()
-    // this.props.navigation.navigate("Login")
-
-
-    //   deleteUser(user)
-    //   .then(()=> this.props.navigation.navigate("Login"))
-    //   .catch(err => console.log(err))
-    // 
   }
 
 
