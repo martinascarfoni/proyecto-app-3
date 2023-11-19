@@ -56,7 +56,7 @@ export default class PerfilUsuarios extends Component {
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => <View>
 
-                        <Text style={styles.txt} >Usuario: {item.data.userName}</Text>
+                        <Text style={styles.txt} > @{item.data.userName}</Text>
                         {item.data.fotoPerfil != '' ?
                             <Image
                                 source={{uri: item.data.fotoPerfil}}
@@ -66,10 +66,10 @@ export default class PerfilUsuarios extends Component {
                             :
                             ''
                         }
-                        <Text style={styles.txt}>Email: {item.data.owner}</Text>
+                        <Text style={styles.txt}> {item.data.owner}</Text>
                         
                         {item.data.minibio ?
-                            <Text style={styles.txt}>Minibio: {item.data.minibio}</Text>
+                            <Text style={styles.txt}>{item.data.minibio}</Text>
                             :
                             ''
                         }
@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
       borderRadius: 80
     },
     txt: {
-        color: "#cccccc"
+        color: "#cccccc",
+        marginLeft: 5
     }
   })

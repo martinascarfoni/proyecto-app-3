@@ -103,7 +103,6 @@ export default class ProfilePropio extends Component {
     return (
       <View style={styles.container}>
 
-        <Text style={styles.titulos}> Foto perfil </Text>
         <Image
           source={{ uri: this.state.usuario.fotoPerfil }}
           style={styles.img}
