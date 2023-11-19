@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
     },
     txt: {
         color: "#cccccc",
-        marginLeft: 5
+        margin: 5
+
     }
   })
