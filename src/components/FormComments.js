@@ -31,17 +31,20 @@ export default class Comments extends Component {
   render() {
     return (
       <View>
-        <Text>Comentarios</Text>
+        
         <TextInput
           style={styles.input}
-          placeholder='comentario'
+          placeholder='comenta aquí...'
           keyboardType='default'
           value={this.state.name}
           onChangeText={(text) => this.setState({ comentario: text })}
+          multiline={true}
+            numberOfLines={2}
         />
-        <TouchableOpacity onPress={() => this.agregarComentario(this.state.comentario)}
+       
+        <TouchableOpacity style={styles.btn} onPress={() => this.agregarComentario(this.state.comentario)}
         >
-          <Text>Agregar comentario</Text>
+          <Text style={styles.textBtn}>Agregar comentario</Text>
         </TouchableOpacity>
       </View>
     )
@@ -51,14 +54,18 @@ export default class Comments extends Component {
 const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
-    borderColor: 'green',
-    marginBottom: 24
+    borderColor: 'rgba(115, 115, 115, 1)',
+    marginBottom: 24,
+    color: "white",
+    marginLeft: 10
   },
   btn: {
     backgroundColor: 'purple',
-    padding: 16
+    padding: 16,
+    marginBottom: 50
   },
   textBtn: {
-    color: 'white'
+    color: 'white',
+  
   }
 })

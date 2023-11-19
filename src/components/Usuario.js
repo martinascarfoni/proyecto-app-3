@@ -17,15 +17,16 @@ export default class Usuario extends Component {
     return (
       <View>
         <Text>
+        <Text style = {styles.texto}> {this.props.data.userName}</Text>
           <Image
            source={{uri: this.props.data.fotoPerfil}}
            style = {styles.img}
            resizeMode='contain'
-          /> {this.props.data.userName}
-
+          /> 
+        
         </Text>
         <TouchableOpacity onPress={()=> this.irAlPerfil()}>
-        <Text> {this.props.data.owner}</Text>
+        <Text  style = {styles.texto}> {this.props.data.owner}</Text>
         </TouchableOpacity>
         
       </View>
@@ -39,6 +40,10 @@ const styles = StyleSheet.create({
   img: {
     height: 100,
     width: 100,
-    borderRadius: 80
+    borderRadius: 80,
+    marginBottom: 20
+  },
+  texto: {
+    color: "white"
   }
 })

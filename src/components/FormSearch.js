@@ -20,7 +20,7 @@ export default class FormSearch extends Component {
       <View style={styles.container}>
         <TextInput
           style={styles.busqueda}
-          placeholder="Búsqueda"
+          placeholder="Busca un perfil aquí..."
           name="busqueda"
           onChangeText={(text) => this.controlarCambios(text)}
         />
@@ -43,5 +43,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 10,
     width: '100%',
+    color: "white"
   },
 });
