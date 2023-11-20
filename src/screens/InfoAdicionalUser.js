@@ -47,14 +47,14 @@ export default class InfoAdicionalUser extends Component {
 
     render() {
         return (
-            <View>
-                <Text>Foto de perfil</Text>
+            <View style={styles.container}>
+                <Text style={styles.titulos}>Foto de perfil</Text>
 
                 <MyImagePicker actualizarFotoDePerfil={(url) => this.actualizarEstadoFotoDePerfil(url)} />
                 {
                     this.state.fotoDePerfil !== '' ?
                         <TouchableOpacity onPress={() => this.actualizarDocDelUsuario()}>
-                            <Text>
+                            <Text style={styles.elmu2}>
                                 Añadir foto de perfil
                             </Text>
                         </TouchableOpacity>
@@ -62,7 +62,7 @@ export default class InfoAdicionalUser extends Component {
                         null
                 }
                 <TouchableOpacity onPress={() => this.omitirPaso()}>
-                    <Text>
+                    <Text style={styles.elmu2}>
                         Omitir este paso
                     </Text>
                 </TouchableOpacity>
@@ -71,5 +71,22 @@ export default class InfoAdicionalUser extends Component {
     }
 }
 
-
-
+const styles= StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#39343d'
+    },
+    elmu2: {
+        color: 'rgb(204, 204, 204)',
+        padding: 10, 
+        fontWeight: 'bold' 
+    },
+    titulos:{
+        padding: 10,
+        marginBottom: 10, 
+        marginTop: 10,
+        color: 'rgb(204, 204, 204)',
+        fontWeight:'bold',
+        fontSize: 20
+      },
+})

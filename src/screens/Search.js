@@ -58,10 +58,10 @@ export default class Search extends Component {
       <>
         <View style={styles.container}>
 
-
-        {/* <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" /> */}
-          <FormSearch filtrarUsuarios={(nombre) => this.filtrarUsuarios(nombre)} actualizarInput={(valor) => this.actualizarInput(valor)} />
-
+          <View style={styles.recuadro}> 
+          <FormSearch style={styles.box} filtrarUsuarios={(nombre) => this.filtrarUsuarios(nombre)} actualizarInput={(valor) => this.actualizarInput(valor)} />
+          <MaterialIcons style={styles.lupita} name="search" size={30} color="white" />
+          </View>
 
           {this.state.valorInput !== "" ? (
             this.state.searchData.length != 0 ?
@@ -100,6 +100,24 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#39343d'
+    backgroundColor: '#39343d',
+    width: 400
   },
+  recuadro: {
+    flexDirection: 'row', alignItems: 'center',
+    margin: 10,
+    width: 300
+  },
+  box: {
+    paddingBottom: 10 ,
+    paddingLeft: 5, 
+    paddingRight: 3,
+    color: '#434343',
+    fontWeight:'bold',
+    textDecorationLine: 'underline',
+  },
+  lupita:{
+    color: 'white',
+    paddingBottom: 10, 
+  }
 })

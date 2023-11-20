@@ -40,7 +40,7 @@ export default class MyImagePicker extends Component {
   render() {
     return (
       <View>
-        <Text>Carga una foto para tu perfil</Text>
+        <Text style={styles.elmu2}>Carga una foto para tu perfil</Text>
         {
             this.state.imagenCargada !== '' ? 
             <>
@@ -65,7 +65,7 @@ export default class MyImagePicker extends Component {
             :
             <>
                 <TouchableOpacity onPress={() => this.activarImagePicker()}>
-                    <Text>Cargar imagen de la libreria</Text>
+                    <Text style={styles.elmu2}>Cargar imagen de la libreria</Text>
                 </TouchableOpacity>
             </>
         }
@@ -77,6 +77,11 @@ export default class MyImagePicker extends Component {
 const styles = StyleSheet.create({
     img: {
         height: 200
+    },
+    elmu2: {
+        color: 'rgb(204, 204, 204)',
+        padding: 10, 
+        fontWeight: 'bold' 
     }
 })
     

@@ -15,7 +15,7 @@ export default class FormPost extends Component {
         <View>
         <TextInput
             style = {styles.input}
-            placeholder = 'Coment for the post'
+            placeholder = 'Agregue una descripción'
             keyboardType = 'default'
             value = {this.props.estadoDescripcion}
             onChangeText = { (text) => this.props.actualizarDescripcion(text) }
@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
     input:{
         borderWidth: 1,
         borderColor: 'green',
-        marginBottom: 24
+        marginBottom: 24,
+        color: 'white'
     },
     btn:{
         backgroundColor:'purple',
