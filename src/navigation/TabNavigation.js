@@ -6,6 +6,8 @@ import Home from '../screens/home'
 import Search from '../screens/Search'
 import ProfilePropio from '../screens/ProfilePropio'
 import NewPost from '../screens/NewPost'
+import { MaterialIcons } from '@expo/vector-icons'; 
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 const Tab = createBottomTabNavigator()
 
@@ -21,26 +23,26 @@ export default function TabNavigation() {
         }}
         />
         <Tab.Screen 
-        name='NewPost' 
+        name='Posteo nuevo' 
         component={NewPost}
         options={{
             headerShown:false,
-            tabBarIcon: ()=> <FontAwesome5 name='home' size={24} color='green' />
+            tabBarIcon: ()=> <MaterialIcons name="photo-camera" size={27} color="purple" />
         }}
         />
         <Tab.Screen 
         name='Search' 
         component={Search}
         options={{
-            tabBarIcon: ()=> <FontAwesome5 name='home' size={24} color='green' />
+            tabBarIcon: ()=> <MaterialIcons name="search" size={30} color="purple" />
         }}
         />
         <Tab.Screen 
-        name='ProfilePropio' 
+        name='Perfil' 
         component={ProfilePropio}
         options={{
             headerShown:false,
-            tabBarIcon: ()=> <FontAwesome5 name='home' size={24} color='green' />
+            tabBarIcon: ()=> <MaterialIcons name="person" size={30} color="purple" />
         }}
         />
 

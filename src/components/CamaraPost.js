@@ -61,12 +61,12 @@ rechazarFoto(){
           <>
           <Camera 
               style={styles.camara}
-              type={Camera.Constants.Type.back}  // que tippo de camara, frontal o trasera
+              type={Camera.Constants.Type.back}  // que tipo de camara, frontal o trasera
               ref={(metodosDeCamara)=> this.metodosDeCamara =  metodosDeCamara}
           
           />
           <TouchableOpacity onPress={() => this.tomarFoto()}>
-            <Text>Tomar foto</Text> 
+            <Text style={styles.elmu2}>Tomar foto</Text> 
             {/* poner icono */}
           </TouchableOpacity>
           </>
@@ -79,15 +79,15 @@ rechazarFoto(){
             resizeMode={'contain'}
           />
           <TouchableOpacity onPress={() => this.aceptarFoto()}>
-            <Text>Guardar foto</Text>
+            <Text style={styles.elmu2}>Guardar foto</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => this.rechazarFoto()}>
-            <Text>Rechazar foto</Text>
+            <Text style={styles.elmu2}>Rechazar foto</Text>
           </TouchableOpacity>
           </>
           :
-          <Text> No tienes permisos para usar la camara</Text>
+          <Text style={styles.elmu} > No tienes permisos para usar la camara</Text>
         }
 
       </View>
@@ -104,5 +104,15 @@ const styles= StyleSheet.create({
   },
   img: {
     height: 300
+  },
+  elmu: {
+    color: '#ff6b6b',
+    padding: 10, 
+    fontWeight: 'bold'
+  },
+  elmu2: {
+    color: 'rgb(204, 204, 204)',
+    padding: 10, 
+    fontWeight: 'bold' 
   }
 })

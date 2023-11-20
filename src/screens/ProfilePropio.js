@@ -16,8 +16,6 @@ export default class ProfilePropio extends Component {
     }
   }
 
-
-
   componentDidMount() {
 
     // busco datos del owner

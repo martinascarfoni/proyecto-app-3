@@ -3,7 +3,9 @@ import { Text, View, TouchableOpacity, TextInput, StyleSheet, FlatList } from 'r
 import { db } from '../firebase/config'
 import Usuario from '../components/Usuario'
 import FormSearch from "../components/FormSearch"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons'; 
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 export default class Search extends Component {
   constructor(props) {
@@ -57,7 +59,7 @@ export default class Search extends Component {
         <View style={styles.container}>
 
 
-        <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
+        {/* <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" /> */}
           <FormSearch filtrarUsuarios={(nombre) => this.filtrarUsuarios(nombre)} actualizarInput={(valor) => this.actualizarInput(valor)} />
 
 
@@ -100,7 +102,4 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#39343d'
   },
-  
-
-
 })

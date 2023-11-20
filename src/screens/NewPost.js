@@ -52,13 +52,11 @@ export default class NewPost extends Component {
     })
   }
 
-  
-
 
 render() {
 return (
   <View style={styles.container}>
-        <Text>Posteo nuevo</Text>
+        <Text style={styles.titulos}>Posteo nuevo</Text>
 
         {
           this.state.paso1 ?
@@ -78,9 +76,9 @@ return (
               fotoUrl: this.state.urlFoto
               })}
               >
-              <Text>Enviar</Text>
+              <Text style={styles.elmu2}>Enviar</Text>
             </TouchableOpacity>
-          </View>
+  </View>
 
          </>
         }
@@ -89,13 +87,25 @@ return (
         
       </View>
 )
-  
-
 }}
 
 
 const styles= StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#39343d'
+    },
+  titulos:{
+    padding: 5,
+    marginBottom: 10, 
+    marginTop: 10,
+    color: 'rgb(204, 204, 204)',
+    fontWeight:'bold',
+    fontSize: 20
+  },
+  elmu2: {
+    color: 'rgb(204, 204, 204)',
+    padding: 10, 
+    fontWeight: 'bold' 
   }
 })
