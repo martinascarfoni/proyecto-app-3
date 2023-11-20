@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'green',
         marginBottom: 24,
-        color: 'white'
+        color: 'white',
+        margin: 15
     },
     btn:{
         backgroundColor:'purple',
